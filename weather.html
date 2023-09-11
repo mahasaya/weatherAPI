@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100;300&family=Merriweather+Sans:wght@300;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="wrapper">
+        
+            <h1>WEATHER APP</h1>
+       
+
+        <div class="tab-container">
+            <p class="tab" data-userWeather>Your weather</p>
+            
+            <p class="tab" data-searchWeather>Search Weather</p>
+        </div>
+
+        <div class="weather-container">
+
+            <!--grnat location-->
+            <div class="grant-location-container">
+                <img src="assets\location.png" alt="" width="80" height="80" loading="lazy">
+                <p>Grant Location Access</p>
+                <p>Allow Access to get weather Information</p>
+                <button class="btn" data-grantAccess>Grant Access</button>
+            </div>
+
+            <!-- search form-->
+            <form class="form-contianer" data-searchForm>
+                <input type="text" placeholder="Search for the city" data-searchInput>
+                <button class="btn" type="submit">
+                <img src="assets\search.png"  width="20" height="20" loading="lazy">
+                </button>
+            </form>
+
+            <!--loading screen-->
+            <div class="loading-container">
+                <img src="assets\loading.gif"  width="150" height="150">
+                <p>loading</p>
+            </div>
+
+            <!--show weahter info-->
+            <div class="user-info-container">
+
+                <!--city nmae and flags-->
+                <div class="name">
+                    <p data-cityName></p>
+                    <img data-counterIcon>
+                </div> 
+
+                <!--weather description-->
+                <p data-weatherDesc></p>
+                
+                <!--weather Icon-->
+                <img data-weatherIcon>
+
+                <!--tempreture-->
+                <p data-temp></p>
+
+                <!--3 carsd -p parameteres-->
+                <div class="parameter-container">
+                    
+                    <!--card 1-->
+                    <div class="parameter">
+                        <img src="assets\wind.png" >
+                        <p>windspeed</p>
+                        <p data-windspeed></p>
+                    </div>
+                    
+                    <!--card 2-->
+                    <div class="parameter">
+                        <img src="assets\humidity.png" >
+                        <p>humidity</p>
+                        <p data-humidity></p>
+                    </div>
+
+                    <!--card 3-->
+                    <div class="parameter">
+                        <img src="assets\cloud.png" >
+                        <p>clouds</p>
+                        <p data-cloudiness></p>
+                    </div>
+                    
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+<div class="button" style="background-color: aqua; border-radius: 50%;; display: inline-block;">
+    <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44" fill="none">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M14.0933 17.875C14.0933 14.2679 17.0175 11.3438 20.6246 11.3438H30.2496C33.8567 11.3438 36.7808 14.2679 36.7808 17.875C36.7808 21.4821 33.8567 24.4062 30.2496 24.4062H20.6246C17.0175 24.4062 14.0933 21.4821 14.0933 17.875ZM20.6246 13.4062C18.1566 13.4062 16.1558 15.407 16.1558 17.875C16.1558 20.343 18.1566 22.3438 20.6246 22.3438H30.2496C32.7176 22.3438 34.7183 20.343 34.7183 17.875C34.7183 15.407 32.7176 13.4062 30.2496 13.4062H20.6246Z" fill="white"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M15.7001 18.2188H15.1246C11.5175 18.2188 8.59332 21.1429 8.59332 24.75C8.59332 28.3571 11.5175 31.2812 15.1246 31.2812H24.7496C28.3567 31.2812 31.2808 28.3571 31.2808 24.75C31.2808 24.2892 31.2331 23.8395 31.1423 23.4056C30.8924 23.4529 30.6345 23.4776 30.3708 23.4776H29.0346C29.1541 23.8809 29.2183 24.3079 29.2183 24.75C29.2183 27.218 27.2176 29.2188 24.7496 29.2188H15.1246C12.6566 29.2188 10.6558 27.218 10.6558 24.75C10.6558 22.282 12.6566 20.2812 15.1246 20.2812H15.805C15.7364 19.9828 15.7001 19.6719 15.7001 19.3526V18.2188Z" fill="white"/>
+        
+        <path xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" d="M14.0933 17.875C14.0933 14.2679 17.0175 11.3438 20.6246 11.3438H30.2496C33.8567 11.3438 36.7808 14.2679 36.7808 17.875C36.7808 21.4821 33.8567 24.4062 30.2496 24.4062H20.6246C17.0175 24.4062 14.0933 21.4821 14.0933 17.875ZM20.6246 13.4062C18.1566 13.4062 16.1558 15.407 16.1558 17.875C16.1558 20.343 18.1566 22.3438 20.6246 22.3438H30.2496C32.7176 22.3438 34.7183 20.343 34.7183 17.875C34.7183 15.407 32.7176 13.4062 30.2496 13.4062H20.6246Z" fill="white"/>
+        <path xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" d="M15.7001 18.2188H15.1246C11.5175 18.2188 8.59332 21.1429 8.59332 24.75C8.59332 28.3571 11.5175 31.2812 15.1246 31.2812H24.7496C28.3567 31.2812 31.2808 28.3571 31.2808 24.75C31.2808 24.2892 31.2331 23.8395 31.1423 23.4056C30.8924 23.4529 30.6345 23.4776 30.3708 23.4776H29.0346C29.1541 23.8809 29.2183 24.3079 29.2183 24.75C29.2183 27.218 27.2176 29.2188 24.7496 29.2188H15.1246C12.6566 29.2188 10.6558 27.218 10.6558 24.75C10.6558 22.282 12.6566 20.2812 15.1246 20.2812H15.805C15.7364 19.9828 15.7001 19.6719 15.7001 19.3526V18.2188Z" fill="white"/>
+    </svg>
+</div>
+
+    <script src="weather.js"></script>
+</body>
+</html>
