@@ -1,0 +1,10 @@
+*,*::before,*::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Merriweather Sans , sans-serif';
+}
+
+:root{
+    --colorDark1:#112D4E
+}
