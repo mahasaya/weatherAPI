@@ -161,4 +161,4 @@ async function fetchSearchWeatherInfo(city) {
     catch(err){
         alert ("something is wrong");
     }
-};
+}
