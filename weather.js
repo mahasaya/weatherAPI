@@ -23,14 +23,14 @@ function switchTab(clickedTab){
     }
     if (!searchForm.classList.contains("active")){
         userInputContainer.classList.remove("active");
-        grantAccessContainer.classList.remove("actvie");
-        searchForm.classList.add("actvie");
+        grantAccessContainer.classList.remove("active");
+        searchForm.classList.add("active");
     }
     else{
         //main pehlai search tab mai tha ab your weather mai aa hu
         
         searchForm.classList.remove("active");
-        userInputContainer.classList.remove("actvie");
+        userInputContainer.classList.remove("active");
         getfromSessionStorage();
     }
 }
@@ -71,7 +71,7 @@ async function fetchUserWeatherInfo(coordinates){
             `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}`
         );
         const data = await response.json();
-        loadingScreen.classList.remove("actvie");
+        loadingScreen.classList.remove("active");
         userInputContainer.classList.add("active");
         renderWeatherInfo(data);
     }
@@ -101,10 +101,10 @@ function renderWeatherInfo(WeatherInfo){
     countryIcon.src =`https://flagcdn.com/16x12/${WeatherInfo?.sys?.country.toLowerCase()}.png`;
     desc.innerText = WeatherInfo?.weather?.[0]?.description;
     WeatherIcon.src = `https://openweathermap.org/img/w/${WeatherInfo?.weather?.[0]?.icon}.png`
-    tem.innerText= WeatherInfo?.main?.temp;
-    windspeed.innerText = WeatherInfo?.wind?.speed;
-    humidity.innerText = WeatherInfo?.main?.humidity;
-    cloudiness.innerText = WeatherInfo?.clouds?.all;
+    tem.innerText= `${((WeatherInfo?.main?.temp)-(272.15)).toFixed(2)} ℃`;
+    windspeed.innerText = `${WeatherInfo?.wind?.speed} m/s` ;
+    humidity.innerText = `${ WeatherInfo?.main?.humidity}%`;
+    cloudiness.innerText = `${WeatherInfo?.clouds?.all}%`  ;
 }
 
 function getLocation(){
@@ -147,6 +147,7 @@ async function fetchSearchWeatherInfo(city) {
     loadingScreen.classList.add("active");
     userInputContainer.classList.remove("active");
     grantAccessContainer.classList.remove("active");
+
 
 
     try{
