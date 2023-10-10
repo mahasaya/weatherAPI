@@ -1,7 +1,7 @@
 const userTab = document.querySelector("[data-userWeather]");
 const searchTab = document.querySelector("[data-searchWeather]");
 const userContainer = document.querySelector(".weather-container");
-
+const errorScreen = document.querySelector(".errorImg")
 const grantAccessContainer = document.querySelector(".grant-location-container");
 const searchForm = document.querySelector("[data-searchForm]");
 const loadingScreen = document.querySelector(".loading-container");
@@ -25,12 +25,14 @@ function switchTab(clickedTab){
         userInputContainer.classList.remove("active");
         grantAccessContainer.classList.remove("active");
         searchForm.classList.add("active");
+   
     }
     else{
         //main pehlai search tab mai tha ab your weather mai aa hu
         
         searchForm.classList.remove("active");
         userInputContainer.classList.remove("active");
+        errorScreen.classList.remove("active");
         getfromSessionStorage();
     }
 }
@@ -58,7 +60,7 @@ function getfromSessionStorage(){
 }
 
 
-async function fetchUserWeatherInfo(coordinates){
+async function fetchUserWeatherInfo(coordinates,){
     const{lat ,lon} = coordinates;
     //make grant location invisible
     grantAccessContainer.classList.remove("active");
@@ -66,20 +68,28 @@ async function fetchUserWeatherInfo(coordinates){
     loadingScreen.classList.add("active");
 
     //API CALL
-    try{
-        const response = await fetch(
-            `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}`
-        );
-        const data = await response.json();
-        loadingScreen.classList.remove("active");
-        userInputContainer.classList.add("active");
-        renderWeatherInfo(data);
-    }
-    catch(err){
-        loadingScreen.classList.remove("active");
-        //hw
-    }
+        try{
+            const response = await fetch(
+                `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}`
+            );
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            loadingScreen.classList.remove("active");
+            userInputContainer.classList.add("active");
+           
+                renderWeatherInfo(data);
+        }
+        catch(error){
+            loadingScreen.classList.remove("active");
+            alert("An Error occured ");
+            console.error("Error:", error);
+        }
 }
+
 
 
 function renderWeatherInfo(WeatherInfo){
@@ -108,13 +118,27 @@ function renderWeatherInfo(WeatherInfo){
 }
 
 function getLocation(){
+    loadingScreen.classList.add("active")
+    grantAccessContainer.classList.remove("active")
     if (navigator.geolocation){
-        navigator.geolocation.getCurrentPosition(showPosition);
+        navigator.geolocation.getCurrentPosition(showPosition, handleLocationError);
+       
     }
     else{
         alert("Geolocation not supported not supported by this browser");
     }
+    
+}
 
+function handleLocationError(error){
+   
+    setTimeout(()=>{
+        alert("access to location denied")
+        console.error("Geolocation Error:", error)
+    }, 1000)
+    
+   grantAccessButton.classList.add("active");
+    
 }
 
 function showPosition(position){
@@ -125,15 +149,17 @@ function showPosition(position){
     }
     
     sessionStorage.setItem("user-coordinates" , JSON.stringify(userCoordinates));
+    getfromSessionStorage();
 }
 
 const grantAccessButton = document.querySelector("[data-grantAccess]");
-grantAccessButton.addEventListener("click", getLocation);
+grantAccessButton.addEventListener("click", getLocation ,);
 
 const searchInput = document.querySelector("[data-searchInput]");
 
 searchForm.addEventListener("submit" , (e) => {
     e.preventDefault();
+    errorScreen.classList.remove("active");
     let cityName = searchInput.value;
 
     if (cityName === "")
@@ -154,12 +180,26 @@ async function fetchSearchWeatherInfo(city) {
         const response = await fetch(
             `https://api.openweathermap.org/data/2.5/weather?q= ${city}&appid=${API_KEY}`
         );
+        
+        if (!response.ok) {
+            loadingScreen.classList.remove("active");
+            errorScreen.classList.add("active");
+            console.log("hello")
+            throw new Error(`HTTP error! Status: ${response.status}`);
+            
+        }
+
         const data = await response.json();
         loadingScreen.classList.remove("active");
         userInputContainer.classList.add("active");
         renderWeatherInfo(data);
     }
-    catch(err){
-        alert ("something is wrong");
+    catch(error){
+        loadingScreen.classList.remove("active");
+        errorScreen.classList.add("active")
+        console.log("nhi chlra bhais");
+          
     }
+
+    
 }

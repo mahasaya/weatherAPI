@@ -94,6 +94,7 @@ h1 {
 }
 
 .grant-location-container p:last-of-type{
+
     font-size: 0.85rem;
     font-weight: 500;
     margin-top: 0.75rem;
@@ -213,6 +214,7 @@ h1 {
 .form-contianer input {
     all: unset;
     width: calc(100% - 80px);
+    color: white ;
     height: 40px;
     padding: 0 20px;
     background-color: rgba(219, 226, 239,0.5);
@@ -221,11 +223,11 @@ h1 {
 }
 
 .form-contianer input::placeholder{
-    color: rgb(255 , 255 ,255 ,0.7);
+    color: rgba(231, 234, 238, 0.637);
 }
 
 .form-contianer input:focus{
-    outline: 3px solid rgb(255 , 255 ,255 ,0.7);
+    outline: 3px solid rgba(231, 234, 238, 0.637);
 }
 
 .form-contianer .btn{
@@ -236,4 +238,29 @@ h1 {
     align-items: center;
     justify-content: center;
     border-radius: 100%;
+}
+
+.errorImg{
+   display:none;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   max-width: 200px;
+   max-height: 200px;
+}
+
+.errorImg img{
+
+    width: 60%;
+    height: 60%;
+}
+
+.errorImg p{
+
+    color: rgb(236, 7, 7);
+    font-size: 2rem;
+    font-weight: 1000;
+}
+.errorImg.active{
+    display: flex;
 }

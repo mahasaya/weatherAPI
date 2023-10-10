@@ -17,19 +17,20 @@
 
         <div class="tab-container">
             <p class="tab" data-userWeather>Your weather</p>
-            
+                
             <p class="tab" data-searchWeather>Search Weather</p>
         </div>
 
         <div class="weather-container">
 
             <!--grnat location-->
-            <div class="sub-container grant-location-container">
-
-                <img src="assets\location.png"  width="80" height="80" loading="lazy">
-                <p>Grant Location Access</p>
-                <p>Allow Access to get weather Information</p>
-                <button class="btn" data-grantAccess>Grant Access</button>
+            <div class=" grant-location-container">
+                <div class="sub-container">
+                    <img src="assets\location.png"  width="80" height="80" loading="lazy">
+                    <p>Grant Location Access</p>
+                    <p>Allow Access to get weather Information</p>
+                    <button class="btn" data-grantAccess>Grant Access</button>
+                </div>   
             </div>
 
             <!-- search form-->
@@ -44,6 +45,12 @@
             <div class="sub-container loading-container">
                 <img src="assets\loading.gif"  width="150" height="150">
                 <p>loading</p>
+            </div>
+
+            <!--ErrorContainer-->
+            <div class="errorImg">
+                <p>ERROR</p>
+                <img src="./assets/not-found.png">
             </div>
 
             <!--show weahter info-->
@@ -97,6 +104,6 @@
 
 
 
-    <script src="weather.js"></script>
+    <script src="index.js"></script>
 </body>
 </html>
